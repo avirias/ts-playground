@@ -21,12 +21,8 @@ type TrimHello = Trim<'      hello       '>
 
 // Replace
 type Replace<Str extends string, From extends string, To extends string> =
-    Str extends `${From}${infer Rest}`
-        ? `${To}${Rest}`
-        : Str extends `${infer Prefix}${From}`
-            ? `${Prefix}${To}`
-            : Str extends `${infer Prefix}${From}${infer Suffix}`
-                ? `${Prefix}${To}${Suffix}` : never
+    Str extends `${infer Prefix}${From}${infer Suffix}`
+        ? `${Prefix}${To}${Suffix}` : Str
 
 
 type ReplaceHello = Replace<"Hello World!", "World", "Avinash">
